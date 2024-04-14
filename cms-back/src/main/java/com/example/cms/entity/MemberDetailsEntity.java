@@ -1,15 +1,12 @@
 package com.example.cms.entity;
 
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -41,8 +38,8 @@ public class MemberDetailsEntity extends  Auditable{
     @Column(name = "nominee_count")
     private int nomineeCount;
 
-    @ManyToOne(targetEntity = InsuranceEntity.class,optional = false,  fetch = FetchType.EAGER)
-    @JoinColumn(name = "insurance_type",referencedColumnName = "insurance_type", insertable = true, updatable = true)
-    private InsuranceEntity insuranceEntity;
+//    @ManyToOne(targetEntity = InsuranceEntity.class,optional = false,  fetch = FetchType.EAGER)
+//    @JoinColumn(name = "insurance_type",referencedColumnName = "insurance_type", insertable = true, updatable = true)
+//    private InsuranceEntity insuranceEntity;
 }
 

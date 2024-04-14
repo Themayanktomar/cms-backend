@@ -11,4 +11,6 @@ public interface MemberDetailsService {
     List<MemberDetailsDTO> getAllMembers();
     MemberDetailsDTO getMemberById(String memberId);
     String deleteMember(String memberId);
+
+
 }

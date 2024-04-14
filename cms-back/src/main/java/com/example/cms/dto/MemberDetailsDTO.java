@@ -17,6 +17,6 @@ public class MemberDetailsDTO {
     private String gender;
     private int nomineeCount;
     private String insuranceType ;
-    private Double maxClaimAmount;
+    private Integer maxClaimAmount;
 
 }

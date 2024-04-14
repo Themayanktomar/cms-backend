@@ -21,6 +21,6 @@ public class InsuranceEntity {
     private String insuranceType;
 
     @Column(name = "insurance_amount")
-    private Double insuranceAmount;
+    private Integer insuranceAmount;
 
 }

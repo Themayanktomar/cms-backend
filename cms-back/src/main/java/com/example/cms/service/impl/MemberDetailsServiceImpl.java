@@ -1,14 +1,15 @@
 package com.example.cms.service.impl;
 
 import com.example.cms.dto.MemberDetailsDTO;
+import com.example.cms.entity.InsuranceDetailEntity;
 import com.example.cms.entity.InsuranceEntity;
 import com.example.cms.entity.MemberDetailsEntity;
+import com.example.cms.repository.InsuranceDetailRepository;
 import com.example.cms.repository.InsuranceRepository;
 import com.example.cms.repository.MemberDetailsRepository;
 import com.example.cms.service.MemberDetailsService;
 import com.example.cms.utility.Utility;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,14 +20,21 @@ import java.util.stream.Collectors;
 public class MemberDetailsServiceImpl implements MemberDetailsService {
 
     private static int memberCounter = 1;
-    @Autowired
-    private MemberDetailsRepository memberRepository;
-    @Autowired
-    private InsuranceRepository insuranceRepository;
+
+    private final MemberDetailsRepository memberRepository;
+    private final InsuranceRepository insuranceRepository;
+
+    private final InsuranceDetailRepository insuranceDetailRepository;
+
+    public MemberDetailsServiceImpl(MemberDetailsRepository memberRepository, InsuranceRepository insuranceRepository, InsuranceDetailRepository insuranceDetailRepository) {
+        this.memberRepository = memberRepository;
+        this.insuranceRepository = insuranceRepository;
+        this.insuranceDetailRepository = insuranceDetailRepository;
+    }
 
     @Override
     public String createMember(MemberDetailsDTO memberDTO , HttpSession session) {
-
+        InsuranceEntity insuranceEntity = insuranceRepository.findByInsuranceType(memberDTO.getInsuranceType());
         String memberID = createMemberID();
         MemberDetailsEntity memberDetailsEntity = copyDtoToEntity(memberDTO);
         memberDetailsEntity.setMemberId(memberID);
@@ -34,9 +42,23 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDetailsEntity.setCreatedBy(Utility.getUserInfo(session));
         memberDetailsEntity.setUpdateAt(LocalDateTime.now());
         memberDetailsEntity.setUpdatedBy(Utility.getUserInfo(session));
-        memberRepository.save(memberDetailsEntity);
+
+        MemberDetailsEntity savedEntity =  memberRepository.save(memberDetailsEntity);
+
+        InsuranceDetailEntity insuranceDetailEntity = new InsuranceDetailEntity();
+        insuranceDetailEntity.setInsuranceType(memberDTO.getInsuranceType());
+        insuranceDetailEntity.setInsuranceAmount(insuranceEntity.getInsuranceAmount());
+        insuranceDetailEntity.setMaximumClaimableAmount(memberDTO.getMaxClaimAmount());
+        insuranceDetailEntity.setMemberDetailsEntity(savedEntity);
+        insuranceDetailEntity.setCreateAt(LocalDateTime.now());
+        insuranceDetailEntity.setCreatedBy(Utility.getUserInfo(session));
+        insuranceDetailEntity.setUpdateAt(LocalDateTime.now());
+        insuranceDetailEntity.setUpdatedBy(Utility.getUserInfo(session));
+
+        insuranceDetailRepository.save(insuranceDetailEntity);
         return "Member created successfully with memberID :" + memberID;
     }
+
 
     private MemberDetailsEntity copyDtoToEntity(MemberDetailsDTO memberDTO) {
         MemberDetailsEntity memberDetailsEntity = new MemberDetailsEntity();
@@ -49,8 +71,6 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDetailsEntity.setEmail(memberDTO.getEmail());
         memberDetailsEntity.setGender(memberDTO.getGender());
         memberDetailsEntity.setNomineeCount(memberDTO.getNomineeCount());
-        InsuranceEntity insuranceEntity = insuranceRepository.findByInsuranceType(memberDTO.getInsuranceType());
-        memberDetailsEntity.setInsuranceEntity(insuranceEntity);
         return memberDetailsEntity;
     }
 
@@ -67,7 +87,6 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDTO.setEmail(memberDetailsEntity.getEmail());
         memberDTO.setGender(memberDetailsEntity.getGender());
         memberDTO.setNomineeCount(memberDetailsEntity.getNomineeCount());
-        memberDTO.setInsuranceType(memberDetailsEntity.getInsuranceEntity().getInsuranceType());
 
         return memberDTO;
     }
@@ -111,4 +130,5 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
       memberRepository.delete(memberDetailsEntity);
       return  " member deleted successfully . ";
     }
+
 }

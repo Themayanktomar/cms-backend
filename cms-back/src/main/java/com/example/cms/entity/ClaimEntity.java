@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
 
 @Entity
@@ -14,27 +13,34 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "claim_entity")
-public class ClaimEntity {
+public class ClaimEntity  extends Auditable{
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "claim_id" )
-    private Integer claimId;
+    @Column(name = "Claim_Request_no" )
+    private Integer claimRequestNo;
 
     @ManyToOne(targetEntity = MemberDetailsEntity.class,optional = false,  fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id",referencedColumnName = "member_id", insertable = true, updatable = true)
     private MemberDetailsEntity memberDetailsEntity;
 
-    @Column(name = "request_date")
+    @Column(name = "Request_date")
     private LocalDate requestDate;
 
-    @ManyToOne(targetEntity = InsuranceEntity.class,optional = false,  fetch = FetchType.EAGER)
-    @JoinColumn(name = "insurance_type",referencedColumnName = "insurance_type", insertable = true, updatable = true)
-    private InsuranceEntity insuranceEntity;
     @Column(name = "claim_reason")
     private String claimReason;
 
-    @Column(name = "field")
-    private String field;
+    @Column(name = "Approval_Date")
+    private String approvalDate;
+
+    @Column(name = "Rejection_Reason")
+    private String rejectionReason;
+
+    @Column(name = "Final_Claim_Amount")
+    private Integer finalClaimAmount;
+
+    @Column(name = "Amount_Claim_Date")
+    private LocalDate amountClaimDate;
+
 }
