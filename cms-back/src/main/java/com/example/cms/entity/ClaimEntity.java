@@ -32,7 +32,7 @@ public class ClaimEntity  extends Auditable{
     private String claimReason;
 
     @Column(name = "Approval_Date")
-    private String approvalDate;
+    private LocalDate approvalDate;
 
     @Column(name = "Rejection_Reason")
     private String rejectionReason;

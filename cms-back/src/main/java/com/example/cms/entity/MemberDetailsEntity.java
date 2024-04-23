@@ -37,6 +37,12 @@ public class MemberDetailsEntity extends  Auditable{
     private String gender;
     @Column(name = "nominee_count")
     private int nomineeCount;
+    @Column(name = "insurance_type")
+    private String insuranceType;
+    @Column(name = "insurance_amount")
+    private Integer insuranceAmount;
+    @Column(name = "claim_amount")
+    private Double claimAmount;
 
 //    @ManyToOne(targetEntity = InsuranceEntity.class,optional = false,  fetch = FetchType.EAGER)
 //    @JoinColumn(name = "insurance_type",referencedColumnName = "insurance_type", insertable = true, updatable = true)

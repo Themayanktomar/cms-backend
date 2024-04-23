@@ -1,8 +1,10 @@
 package com.example.cms.controller;
 
 
+import com.example.cms.dto.ClaimRequestDTO;
 import com.example.cms.dto.ClaimServiceResponseDTO;
 import com.example.cms.service.ClaimService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -35,4 +37,11 @@ public class ClaimController {
     public  List<ClaimServiceResponseDTO> getAllClaimsByDateRange(@PathVariable LocalDate startDate ,@PathVariable LocalDate endDate){
         return claimService.getAllClaimsByDateRange(startDate,endDate);
     }
+
+    @PostMapping("/createClaim")
+    public String createClaimRequest(@RequestBody ClaimRequestDTO claimRequestDTO , HttpSession session)
+    {
+        return claimService.createClaimRequest(claimRequestDTO , session);
+    }
 }
+

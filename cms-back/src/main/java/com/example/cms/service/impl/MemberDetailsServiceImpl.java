@@ -42,6 +42,9 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDetailsEntity.setCreatedBy(Utility.getUserInfo(session));
         memberDetailsEntity.setUpdateAt(LocalDateTime.now());
         memberDetailsEntity.setUpdatedBy(Utility.getUserInfo(session));
+        memberDetailsEntity.setInsuranceType(memberDTO.getInsuranceType());
+        memberDetailsEntity.setInsuranceAmount(insuranceEntity.getInsuranceAmount());
+        memberDetailsEntity.setClaimAmount(getClaimAmount(insuranceEntity));
 
         MemberDetailsEntity savedEntity =  memberRepository.save(memberDetailsEntity);
 
@@ -49,14 +52,33 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         insuranceDetailEntity.setInsuranceType(memberDTO.getInsuranceType());
         insuranceDetailEntity.setInsuranceAmount(insuranceEntity.getInsuranceAmount());
         insuranceDetailEntity.setMaximumClaimableAmount(memberDTO.getMaxClaimAmount());
-        insuranceDetailEntity.setMemberDetailsEntity(savedEntity);
         insuranceDetailEntity.setCreateAt(LocalDateTime.now());
         insuranceDetailEntity.setCreatedBy(Utility.getUserInfo(session));
         insuranceDetailEntity.setUpdateAt(LocalDateTime.now());
         insuranceDetailEntity.setUpdatedBy(Utility.getUserInfo(session));
+        insuranceDetailEntity.setMemberDetailsEntity(savedEntity);
+
 
         insuranceDetailRepository.save(insuranceDetailEntity);
         return "Member created successfully with memberID :" + memberID;
+    }
+
+    private Double getClaimAmount(InsuranceEntity insuranceEntity) {
+        Double claimAmount = null;
+
+        switch (insuranceEntity.getInsuranceType()) {
+            case "CAR_INSURANCE":
+                claimAmount =  (insuranceEntity.getInsuranceAmount() * 0.8);
+                break;
+            case "HOME_INSURANCE":
+                claimAmount =  (insuranceEntity.getInsuranceAmount() * 0.91);
+                break;
+            case "LIFE_INSURANCE":
+                claimAmount =  (insuranceEntity.getInsuranceAmount() * 1.00);
+                break;
+        }
+        
+        return claimAmount;
     }
 
 

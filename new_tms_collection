@@ -12,19 +12,13 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "adminId",
-							"value": "cms-001",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "Mayank@123",
-							"type": "text"
+					"mode": "raw",
+					"raw": "{\r\n    \"adminId\"  : \"test@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					]
+					}
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/login",
@@ -115,7 +109,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\" : \"mayank\",\r\n    \"lastName\" : \"tomar\",\r\n    \"dateOfBirth\": \"2024-02-03\",\r\n    \"address\" : \"sdfasd\",\r\n    \"contactNo\" :1111111111,\r\n    \"email\" : \"m@m.com\",\r\n    \"gender\": \"male\",\r\n    \"nomineeCount\" : 1,\r\n    \"insuranceType\" : \"LIFE_INSURANCE\"\r\n\r\n}",
+					"raw": "{\r\n    \"firstName\" : \"test\",\r\n    \"lastName\" : \"test\",\r\n    \"dateOfBirth\": \"2024-02-03\",\r\n    \"address\" : \"sdfasd\",\r\n    \"contactNo\" :1111111111,\r\n    \"email\" : \"m@m.com\",\r\n    \"gender\": \"male\",\r\n    \"nomineeCount\" : 1,\r\n    \"insuranceType\" : \"LIFE_INSURANCE\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -183,6 +177,107 @@
 						"gelAllMember"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "getInsuranceAmount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/members/getInsuranceAmount/LIFE_INSURANCE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"members",
+						"getInsuranceAmount",
+						"LIFE_INSURANCE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllClaimsByFirstName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/claim/getAllClaimsByFirstName/mayank",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"claim",
+						"getAllClaimsByFirstName",
+						"mayank"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllClaimsByMemberId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/claim/getAllClaimsByMemberId/MBC-00002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"claim",
+						"getAllClaimsByMemberId",
+						"MBC-00002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllClaimsByDateRange",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/claim/getAllClaimsByDateRange/endDate/endDate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"claim",
+						"getAllClaimsByDateRange",
+						"endDate",
+						"endDate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "createclaimreq",
+			"request": {
+				"method": "POST",
+				"header": []
 			},
 			"response": []
 		}
