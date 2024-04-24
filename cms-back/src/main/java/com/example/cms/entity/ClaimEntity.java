@@ -8,8 +8,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "claim_entity")
@@ -43,4 +41,67 @@ public class ClaimEntity  extends Auditable{
     @Column(name = "Amount_Claim_Date")
     private LocalDate amountClaimDate;
 
+    public Integer getClaimRequestNo() {
+        return claimRequestNo;
+    }
+
+    public void setClaimRequestNo(Integer claimRequestNo) {
+        this.claimRequestNo = claimRequestNo;
+    }
+
+    public MemberDetailsEntity getMemberDetailsEntity() {
+        return memberDetailsEntity;
+    }
+
+    public void setMemberDetailsEntity(MemberDetailsEntity memberDetailsEntity) {
+        this.memberDetailsEntity = memberDetailsEntity;
+    }
+
+    public LocalDate getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public String getClaimReason() {
+        return claimReason;
+    }
+
+    public void setClaimReason(String claimReason) {
+        this.claimReason = claimReason;
+    }
+
+    public LocalDate getApprovalDate() {
+        return approvalDate;
+    }
+
+    public void setApprovalDate(LocalDate approvalDate) {
+        this.approvalDate = approvalDate;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
+    public Integer getFinalClaimAmount() {
+        return finalClaimAmount;
+    }
+
+    public void setFinalClaimAmount(Integer finalClaimAmount) {
+        this.finalClaimAmount = finalClaimAmount;
+    }
+
+    public LocalDate getAmountClaimDate() {
+        return amountClaimDate;
+    }
+
+    public void setAmountClaimDate(LocalDate amountClaimDate) {
+        this.amountClaimDate = amountClaimDate;
+    }
 }

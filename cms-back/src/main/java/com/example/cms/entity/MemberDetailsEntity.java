@@ -9,8 +9,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Member_Details")
@@ -44,8 +42,101 @@ public class MemberDetailsEntity extends  Auditable{
     @Column(name = "claim_amount")
     private Double claimAmount;
 
-//    @ManyToOne(targetEntity = InsuranceEntity.class,optional = false,  fetch = FetchType.EAGER)
-//    @JoinColumn(name = "insurance_type",referencedColumnName = "insurance_type", insertable = true, updatable = true)
-//    private InsuranceEntity insuranceEntity;
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Long getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(Long contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getNomineeCount() {
+        return nomineeCount;
+    }
+
+    public void setNomineeCount(int nomineeCount) {
+        this.nomineeCount = nomineeCount;
+    }
+
+    public String getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(String insuranceType) {
+        this.insuranceType = insuranceType;
+    }
+
+    public Integer getInsuranceAmount() {
+        return insuranceAmount;
+    }
+
+    public void setInsuranceAmount(Integer insuranceAmount) {
+        this.insuranceAmount = insuranceAmount;
+    }
+
+    public Double getClaimAmount() {
+        return claimAmount;
+    }
+
+    public void setClaimAmount(Double claimAmount) {
+        this.claimAmount = claimAmount;
+    }
 }
 

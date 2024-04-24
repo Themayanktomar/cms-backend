@@ -9,8 +9,6 @@ import lombok.Setter;
 import javax.swing.*;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "insurance_entity")
@@ -23,4 +21,20 @@ public class InsuranceEntity {
     @Column(name = "insurance_amount")
     private Integer insuranceAmount;
 
+
+    public String getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(String insuranceType) {
+        this.insuranceType = insuranceType;
+    }
+
+    public Integer getInsuranceAmount() {
+        return insuranceAmount;
+    }
+
+    public void setInsuranceAmount(Integer insuranceAmount) {
+        this.insuranceAmount = insuranceAmount;
+    }
 }
