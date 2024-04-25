@@ -65,7 +65,7 @@ public class ClaimServiceImpl implements ClaimService {
         claimEntity.setMemberDetailsEntity(memberDetailsEntity);
         claimEntity.setClaimReason(claimRequestDTO.getClaimReason());
         claimEntity.setRequestDate(LocalDate.now());
-        claimEntity.setApprovalDate(LocalDate.now().plusDays(45));
+        claimEntity.setAmountClaimDate(LocalDate.now().plusDays(45));
         claimEntity.setFinalClaimAmount(getFinalClaimAmount(memberDetailsEntity , claimRequestDTO));
         claimEntity.setCreateAt(LocalDateTime.now());
         claimEntity.setCreatedBy(Utility.getUserInfo(session));
@@ -132,9 +132,27 @@ public class ClaimServiceImpl implements ClaimService {
             claimServiceResponseDTO.setMemberID(claimentity.getMemberDetailsEntity().getMemberId());
             claimServiceResponseDTO.setMemberFirstName(claimentity.getMemberDetailsEntity().getFirstName());
             claimServiceResponseDTO.setMemberLastName(claimentity.getMemberDetailsEntity().getLastName());
-//            claimServiceResponseDTO.setInsuranceType(claimentity.getMemberDetailsEntity().getInsuranceEntity().getInsuranceType());
+            claimServiceResponseDTO.setClaimRequestNo(claimentity.getClaimRequestNo());
+            claimServiceResponseDTO.setInsuranceType(claimentity.getMemberDetailsEntity().getInsuranceType());
             claimServiceResponseDTOList.add(claimServiceResponseDTO);
         }
         return claimServiceResponseDTOList;
+    }
+
+
+    @Override
+    public String rejectClaimRequest(Integer claimRequestNo, String reason) {
+        ClaimEntity claimEntity = claimRepository.findByClaimRequestNo(claimRequestNo);
+        claimEntity.setRejectionReason(reason);
+        ClaimEntity savedEntity = claimRepository.save(claimEntity);
+        return "Claim rejected successfully";
+    }
+
+    @Override
+    public String approveClaimRequest(Integer claimRequestNo) {
+        ClaimEntity claimEntity = claimRepository.findByClaimRequestNo(claimRequestNo);
+        claimEntity.setApprovalDate(claimEntity.getAmountClaimDate().plusDays(10));
+        ClaimEntity savedEntity = claimRepository.save(claimEntity);
+        return "Your claim request is approved claim amount is " + savedEntity.getFinalClaimAmount() + " and the claim approval date is " + savedEntity.getApprovalDate() ;
     }
 }

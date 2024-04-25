@@ -13,4 +13,6 @@ public interface ClaimService {
     List<ClaimServiceResponseDTO> getAllClaimsByFirstName(String firstName);
     List<ClaimServiceResponseDTO> getAllClaimsByDateRange(LocalDate startDate , LocalDate endDate);
     String createClaimRequest(ClaimRequestDTO claimRequestDTO , HttpSession session);
+    String approveClaimRequest(Integer claimRequestNo);
+    String rejectClaimRequest(Integer claimRequestNo , String reason);
 }

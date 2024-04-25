@@ -14,4 +14,6 @@ public interface ClaimRepository extends JpaRepository<ClaimEntity , Integer> {
 
     List<ClaimEntity> findAllByRequestDateBetween(LocalDate startDate, LocalDate endDate);
 
+    ClaimEntity findByClaimRequestNo(Integer claimRequestNo);
+
 }

@@ -10,6 +10,15 @@ public class ClaimServiceResponseDTO {
     private String memberLastName;
     private String insuranceType;
     private LocalDate claimRequestDate;
+    private Integer claimRequestNo;
+
+    public Integer getClaimRequestNo() {
+        return claimRequestNo;
+    }
+
+    public void setClaimRequestNo(Integer claimRequestNo) {
+        this.claimRequestNo = claimRequestNo;
+    }
 
     public String getMemberID() {
         return memberID;

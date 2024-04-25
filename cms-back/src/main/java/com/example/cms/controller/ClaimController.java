@@ -43,5 +43,17 @@ public class ClaimController {
     {
         return claimService.createClaimRequest(claimRequestDTO , session);
     }
+
+    @PutMapping("/approveClaim")
+    public String approveClaim(@RequestParam Integer claimRequestNo)
+    {
+        return claimService.approveClaimRequest(claimRequestNo);
+    }
+
+    @PutMapping("/rejectClaim")
+    public String rejectClaim(@RequestParam Integer claimRequestNo  , @RequestParam String reason)
+    {
+        return claimService.rejectClaimRequest(claimRequestNo , reason);
+    }
 }
 
