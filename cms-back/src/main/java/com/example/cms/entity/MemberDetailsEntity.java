@@ -40,7 +40,7 @@ public class MemberDetailsEntity extends  Auditable{
     @Column(name = "insurance_amount")
     private Integer insuranceAmount;
     @Column(name = "claim_amount")
-    private Double claimAmount;
+    private Integer claimAmount;
 
 
     public String getMemberId() {
@@ -131,11 +131,11 @@ public class MemberDetailsEntity extends  Auditable{
         this.insuranceAmount = insuranceAmount;
     }
 
-    public Double getClaimAmount() {
+    public Integer getClaimAmount() {
         return claimAmount;
     }
 
-    public void setClaimAmount(Double claimAmount) {
+    public void setClaimAmount(Integer claimAmount) {
         this.claimAmount = claimAmount;
     }
 }

@@ -63,18 +63,18 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         return "Member created successfully with memberID :" + memberID;
     }
 
-    private Double getClaimAmount(InsuranceEntity insuranceEntity) {
-        Double claimAmount = null;
+    private Integer getClaimAmount(InsuranceEntity insuranceEntity) {
+        Integer claimAmount = null;
 
         switch (insuranceEntity.getInsuranceType()) {
             case "CAR_INSURANCE":
-                claimAmount =  (insuranceEntity.getInsuranceAmount() * 0.8);
+                claimAmount = (int) (insuranceEntity.getInsuranceAmount() * 0.8);
                 break;
             case "HOME_INSURANCE":
-                claimAmount =  (insuranceEntity.getInsuranceAmount() * 0.91);
+                claimAmount = (int) (insuranceEntity.getInsuranceAmount() * 0.91);
                 break;
             case "LIFE_INSURANCE":
-                claimAmount =  (insuranceEntity.getInsuranceAmount() * 1.00);
+                claimAmount = (int) (insuranceEntity.getInsuranceAmount() * 1.00);
                 break;
         }
         
@@ -110,6 +110,7 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDTO.setGender(memberDetailsEntity.getGender());
         memberDTO.setNomineeCount(memberDetailsEntity.getNomineeCount());
         memberDTO.setInsuranceType(memberDetailsEntity.getInsuranceType());
+        memberDTO.setMaxClaimAmount(memberDetailsEntity.getClaimAmount());
         return memberDTO;
     }
 
