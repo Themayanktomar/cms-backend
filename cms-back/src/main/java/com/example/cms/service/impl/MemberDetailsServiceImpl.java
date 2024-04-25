@@ -109,7 +109,7 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDTO.setEmail(memberDetailsEntity.getEmail());
         memberDTO.setGender(memberDetailsEntity.getGender());
         memberDTO.setNomineeCount(memberDetailsEntity.getNomineeCount());
-
+        memberDTO.setInsuranceType(memberDetailsEntity.getInsuranceType());
         return memberDTO;
     }
 
