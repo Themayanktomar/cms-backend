@@ -144,6 +144,7 @@ public class ClaimServiceImpl implements ClaimService {
     public String rejectClaimRequest(Integer claimRequestNo, String reason) {
         ClaimEntity claimEntity = claimRepository.findByClaimRequestNo(claimRequestNo);
         claimEntity.setRejectionReason(reason);
+        claimEntity.setStatus("Rejected");
         ClaimEntity savedEntity = claimRepository.save(claimEntity);
         return "Claim rejected successfully";
     }
@@ -152,6 +153,7 @@ public class ClaimServiceImpl implements ClaimService {
     public String approveClaimRequest(Integer claimRequestNo) {
         ClaimEntity claimEntity = claimRepository.findByClaimRequestNo(claimRequestNo);
         claimEntity.setApprovalDate(claimEntity.getAmountClaimDate().plusDays(10));
+        claimEntity.setStatus("Approved");
         ClaimEntity savedEntity = claimRepository.save(claimEntity);
         return "Your claim request is approved claim amount is " + savedEntity.getFinalClaimAmount() + " and the claim approval date is " + savedEntity.getApprovalDate() ;
     }

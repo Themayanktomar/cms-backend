@@ -38,8 +38,19 @@ public class ClaimEntity  extends Auditable{
     @Column(name = "Final_Claim_Amount")
     private Integer finalClaimAmount;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Column(name = "Amount_Claim_Date")
     private LocalDate amountClaimDate;
+
+    @Column(name = "status")
+    private String status;
 
     public Integer getClaimRequestNo() {
         return claimRequestNo;
