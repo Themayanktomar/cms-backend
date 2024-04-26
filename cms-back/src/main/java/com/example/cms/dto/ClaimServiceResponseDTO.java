@@ -9,9 +9,18 @@ public class ClaimServiceResponseDTO {
     private String memberFirstName;
     private String memberLastName;
     private String insuranceType;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private LocalDate claimRequestDate;
     private Integer claimRequestNo;
-
+    private String status;
     public Integer getClaimRequestNo() {
         return claimRequestNo;
     }

@@ -129,6 +129,7 @@ public class MemberDetailsServiceImpl implements MemberDetailsService {
         memberDetailsEntity.setGender(memberDTO.getGender() != null ? memberDTO.getGender() : memberDetailsEntity.getGender());
         memberDetailsEntity.setAddress(memberDTO.getAddress() != null ? memberDTO.getAddress() : memberDetailsEntity.getAddress());
         memberDetailsEntity.setContactNo(memberDTO.getContactNo() != null ? memberDTO.getContactNo() : memberDetailsEntity.getContactNo());
+        memberDetailsEntity.setEmail(memberDTO.getEmail() != null ? memberDTO.getEmail() : memberDetailsEntity.getEmail());
         memberDetailsEntity.setUpdatedBy(Utility.getUserInfo(session));
         memberDetailsEntity.setUpdateAt(LocalDateTime.now());
         memberRepository.save(memberDetailsEntity);

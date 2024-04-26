@@ -74,7 +74,7 @@ public class ClaimServiceImpl implements ClaimService {
 
         ClaimEntity savedEntity = claimRepository.save(claimEntity);
 
-        return "Dear Admin the claim request for " + memberDetailsEntity.getMemberId() + " has been posted , your claim will be processed before " + savedEntity.getApprovalDate();
+        return "Dear Admin the claim request for " + memberDetailsEntity.getMemberId() + " has been posted , your claim will be processed before " + savedEntity.getAmountClaimDate();
      }
 
     private Integer getFinalClaimAmount(MemberDetailsEntity memberDetailsEntity , ClaimRequestDTO claimRequestDTO) {
@@ -134,6 +134,7 @@ public class ClaimServiceImpl implements ClaimService {
             claimServiceResponseDTO.setMemberLastName(claimentity.getMemberDetailsEntity().getLastName());
             claimServiceResponseDTO.setClaimRequestNo(claimentity.getClaimRequestNo());
             claimServiceResponseDTO.setInsuranceType(claimentity.getMemberDetailsEntity().getInsuranceType());
+            claimServiceResponseDTO.setStatus(claimentity.getStatus());
             claimServiceResponseDTOList.add(claimServiceResponseDTO);
         }
         return claimServiceResponseDTOList;
